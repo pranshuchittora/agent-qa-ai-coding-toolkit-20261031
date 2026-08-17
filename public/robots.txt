@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://vvc3303.xyz/sitemap.xml

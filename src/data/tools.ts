@@ -18,6 +18,7 @@ export interface Tool {
   usage: string[];
   bestFor: string;
   china: 'excellent' | 'ok' | 'blocked';
+  troubleshoot?: string;
 }
 
 export const categoryMeta: Record<
@@ -79,6 +80,7 @@ export const tools: Tool[] = [
     ],
     bestFor: '复杂重构、架构决策、需要跑命令验证的大型任务',
     china: 'blocked',
+    troubleshoot: 'claude',
   },
   {
     slug: 'openai-codex',
@@ -115,6 +117,7 @@ export const tools: Tool[] = [
     ],
     bestFor: '委托式异步任务、并行修 bug、需要云端验证的集成任务',
     china: 'ok',
+    troubleshoot: 'codex',
   },
   {
     slug: 'gemini-cli',
@@ -402,6 +405,98 @@ export const tools: Tool[] = [
       '侧边栏对话、选中代码解释、行内补全',
     ],
     bestFor: '国内企业团队、Java 技术栈、合规优先',
+    china: 'excellent',
+  },
+  {
+    slug: 'zed',
+    name: 'Zed',
+    vendor: 'Zed Industries（开源）',
+    category: 'ide',
+    tagline: 'Rust 写的极速 AI 原生编辑器,内置多模型 Agent 面板',
+    price: '编辑器免费;Zed AI 按用量/订阅',
+    freeTier: '编辑器完全免费',
+    context: '依赖项目索引',
+    model: 'GPT / Claude / Gemini 可切换',
+    pros: [
+      '性能天花板:Rust 原生,冷启动与超大文件不卡',
+      '内置多模型 Agent 面板,不用装插件就有 AI',
+      '开源可自建,支持协作编辑',
+    ],
+    cons: [
+      '插件生态比 VS Code 小不少',
+      'Agent 自主能力仍在追赶 Cursor',
+      '国内部分功能访问需要代理',
+    ],
+    install: [
+      '官网 zed.dev 下载安装包',
+      'macOS 也可 brew install --cask zed',
+      '首次启动按提示登录/配置模型',
+    ],
+    usage: [
+      'Cmd+K 内联编辑;Cmd+R 重构',
+      'Agent Panel:自然语言下达任务',
+      '/context 添加项目上下文',
+    ],
+    bestFor: '追求编辑器性能、喜欢轻量开源方案的开发者',
+    china: 'ok',
+  },
+  {
+    slug: 'continue',
+    name: 'Continue',
+    vendor: '开源社区',
+    category: 'plugin',
+    tagline: '开源 AI 代码助手,本地优先、模型完全自由',
+    price: '免费（BYOK 自付模型费）',
+    freeTier: '完全免费',
+    context: '依赖所用模型',
+    model: '任意（本地 / 云端 BYOK）',
+    pros: [
+      '开源透明,数据可完全留在本地',
+      '本地模型优先,隐私友好',
+      'VS Code / JetBrains 都支持',
+    ],
+    cons: [
+      '托管功能少,需要自己配模型与 prompt',
+      '补全质量依赖你选的模型',
+    ],
+    install: [
+      'VS Code / JetBrains 插件市场搜索 Continue 安装',
+      '在设置里选择模型(本地 Ollama 或云端 API)',
+    ],
+    usage: [
+      'Cmd+L 对话;Cmd+I 内联编辑',
+      '@codebase 全仓库问答',
+    ],
+    bestFor: '开源、隐私优先、已有模型 Key 的开发者',
+    china: 'excellent',
+  },
+  {
+    slug: 'roo-code',
+    name: 'Roo Code',
+    vendor: '开源社区（Cline 分支）',
+    category: 'plugin',
+    tagline: 'Cline 的活跃分支,多角色 Agent 模式',
+    price: '免费（BYOK 自付模型费）',
+    freeTier: '完全免费',
+    context: '依赖所用模型',
+    model: '任意 API 模型（BYOK）',
+    pros: [
+      'Code / Architect / Ask 多角色模式,分工清晰',
+      '社区活跃,迭代快',
+      '模型自由,逐项批准安全可控',
+    ],
+    cons: [
+      '每个操作都要确认,自动化流畅度打折',
+      '需要自己配置模型 key',
+    ],
+    install: [
+      'VS Code 扩展市场搜索 Roo Code 安装',
+      '设置里填 API Key 与模型',
+    ],
+    usage: [
+      '侧边栏选模式后下达任务,逐项批准工具调用',
+    ],
+    bestFor: '想要多角色分工、追求透明可控的 VS Code 用户',
     china: 'excellent',
   },
 ];

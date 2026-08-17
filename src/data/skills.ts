@@ -155,6 +155,41 @@ export const skills: Skill[] = [
     install: 'npx skills add addyosmani/agent-skills',
     when: '想要一套覆盖完整工程生命周期的流程 skill。',
   },
+  {
+    name: 'Code Review',
+    author: 'anthropics/skills',
+    official: true,
+    type: 'capability',
+    oneLiner: '官方审查器：从架构、安全、性能、可维护性多维度系统审查代码变更。',
+    install: 'npx skills add https://github.com/anthropics/skills --skill code-review',
+    when: '合并代码前做一次结构化的多维度审查。',
+  },
+  {
+    name: 'Excel / Spreadsheets',
+    author: 'anthropics/skills',
+    official: true,
+    type: 'capability',
+    oneLiner: '官方表格技能：读写 xlsx、公式、图表、条件格式，生成专业报表。',
+    install: 'npx skills add https://github.com/anthropics/skills --skill excel',
+    when: '需要生成或处理 Excel 报表、数据透视、图表。',
+  },
+  {
+    name: 'Brand Guidelines',
+    author: 'anthropics/skills',
+    official: true,
+    type: 'preference',
+    oneLiner: '官方品牌规范：保持输出的配色、语气、排版与你的品牌一致，杜绝"AI 味"素材。',
+    install: 'npx skills add https://github.com/anthropics/skills --skill brand-guidelines',
+    when: '对外输出需要严格统一品牌风格时。',
+  },
+  {
+    name: 'TypeScript Best Practices',
+    author: 'addyosmani/agent-skills',
+    type: 'preference',
+    oneLiner: 'TypeScript 工程规范：类型安全、性能与可维护性规则集，适合 TS 项目。',
+    install: 'npx skills add addyosmani/agent-skills',
+    when: 'TypeScript 项目开发，希望代码类型更严谨、更可维护。',
+  },
 ];
 
 export const skillInstallMethods = [

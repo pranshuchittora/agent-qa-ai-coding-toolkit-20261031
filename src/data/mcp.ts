@@ -255,6 +255,35 @@ export const mcpServers: McpServer[] = [
     oneLiner: '跨会话持久记忆，存用户偏好与关键事实。',
     install: '官方参考实现',
   },
+  {
+    name: 'Fetch MCP',
+    vendor: 'Anthropic 官方参考',
+    category: 'web',
+    oneLiner: '抓取任意网页内容转成干净的 markdown，给模型读外部文档。',
+    install: 'npx @modelcontextprotocol/server-fetch',
+  },
+  {
+    name: 'Docker MCP',
+    vendor: 'Docker 官方',
+    category: 'cloud',
+    oneLiner: '容器、镜像、Compose 全套管理，Agent 直接操作本地/远程 Docker。',
+    install: 'Docker Desktop → Settings → MCP 官方扩展',
+  },
+  {
+    name: 'Stripe MCP',
+    vendor: 'Stripe 官方',
+    category: 'cloud',
+    oneLiner: '支付、订阅、对账查询，给 Agent 接 Stripe 财务数据。',
+    install: 'npx stripe-mcp --api-key <key>',
+    env: 'STRIPE_API_KEY',
+  },
+  {
+    name: 'OpenTelemetry MCP',
+    vendor: 'OpenTelemetry 官方',
+    category: 'cloud',
+    oneLiner: '查询 trace 与指标，Agent 直接定位线上性能与可用性问题。',
+    install: '官方 npm 包',
+  },
 ];
 
 export const mcpBestPractices = [

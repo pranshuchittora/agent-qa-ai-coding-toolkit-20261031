@@ -1,13 +1,54 @@
 @import "tailwindcss";
 
+/* 深色模式:通过 .dark 类切换(由 Header 的切换按钮控制,localStorage 记忆) */
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
+  /* 语义化颜色 token:组件里统一用这些,深色模式只需覆写变量 */
   --color-ink: #0f172a;
   --color-muted: #64748b;
   --color-line: #e2e8f0;
-  --color-soft: #f8fafc;
+  --color-soft: #f4f6fb;
+  --color-surface: #ffffff;
   --color-brand: #6366f1;
   --color-brand-soft: #eef2ff;
   --color-accent: #0ea5e9;
+  --color-accent-soft: #ecfeff;
+  --color-good: #059669;
+  --color-good-soft: #ecfdf5;
+  --color-warn: #d97706;
+  --color-warn-soft: #fffbeb;
+  --color-bad: #e11d48;
+  --color-bad-soft: #fff1f2;
+
+  --font-sans: system-ui, -apple-system, "Segoe UI", "PingFang SC",
+    "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, "Cascadia Code", Consolas,
+    "Courier New", monospace;
+
+  --shadow-card: 0 1px 2px rgba(15, 23, 42, 0.04), 0 4px 16px rgba(15, 23, 42, 0.06);
+  --shadow-card-lg: 0 4px 8px rgba(15, 23, 42, 0.05), 0 16px 40px rgba(15, 23, 42, 0.12);
+}
+
+.dark {
+  color-scheme: dark;
+  --color-ink: #e2e8f0;
+  --color-muted: #8b98ab;
+  --color-line: #1e293b;
+  --color-soft: #101a2e;
+  --color-surface: #0b1220;
+  --color-brand: #818cf8;
+  --color-brand-soft: rgba(99, 102, 241, 0.16);
+  --color-accent: #38bdf8;
+  --color-accent-soft: rgba(14, 165, 233, 0.12);
+  --color-good: #34d399;
+  --color-good-soft: rgba(16, 185, 129, 0.15);
+  --color-warn: #fbbf24;
+  --color-warn-soft: rgba(217, 119, 6, 0.15);
+  --color-bad: #fb7185;
+  --color-bad-soft: rgba(225, 29, 72, 0.15);
+  --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.35), 0 4px 16px rgba(0, 0, 0, 0.4);
+  --shadow-card-lg: 0 4px 8px rgba(0, 0, 0, 0.35), 0 16px 40px rgba(0, 0, 0, 0.55);
 }
 
 :root {
@@ -20,18 +61,17 @@ html {
 
 body {
   margin: 0;
-  font-family: system-ui, -apple-system, "Segoe UI", "PingFang SC",
-    "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  font-family: var(--font-sans);
   color: var(--color-ink);
-  background: #fff;
+  background: var(--color-surface);
   -webkit-font-smoothing: antialiased;
+  transition: background-color 0.25s ease, color 0.25s ease;
 }
 
 code,
 pre,
 kbd {
-  font-family: ui-monospace, SFMono-Regular, "Cascadia Code", Consolas,
-    "Courier New", monospace;
+  font-family: var(--font-mono);
 }
 
 pre {
@@ -44,14 +84,90 @@ pre {
   line-height: 1.7;
 }
 
+.dark pre {
+  background: #0a0f1c;
+  border: 1px solid var(--color-line);
+}
+
 code:not(pre code) {
   padding: 0.15rem 0.4rem;
   border-radius: 0.35rem;
-  background: #f1f5f9;
+  background: var(--color-soft);
   color: #be185d;
   font-size: 0.88em;
 }
 
+.dark code:not(pre code) {
+  color: #f472b6;
+}
+
 ::selection {
   background: #c7d2fe;
+}
+
+/* ---------- 动效 ---------- */
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes float-y {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-fade-up {
+  animation: fade-up 0.55s ease both;
+}
+
+.animate-float {
+  animation: float-y 5s ease-in-out infinite;
+}
+
+/* ---------- Hero 背景:网格 + 渐变光斑 ---------- */
+.bg-grid {
+  background-image: linear-gradient(to right, rgba(99, 102, 241, 0.08) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(99, 102, 241, 0.08) 1px, transparent 1px);
+  background-size: 36px 36px;
+  mask-image: radial-gradient(ellipse 90% 80% at 50% 0%, black 30%, transparent 75%);
+  -webkit-mask-image: radial-gradient(ellipse 90% 80% at 50% 0%, black 30%, transparent 75%);
+}
+
+.hero-mesh {
+  background:
+    radial-gradient(600px 300px at 12% 0%, rgba(99, 102, 241, 0.16), transparent 65%),
+    radial-gradient(500px 280px at 88% 10%, rgba(14, 165, 233, 0.14), transparent 65%),
+    radial-gradient(420px 260px at 50% 100%, rgba(236, 72, 153, 0.08), transparent 60%);
+}
+
+.dark .hero-mesh {
+  background:
+    radial-gradient(600px 300px at 12% 0%, rgba(99, 102, 241, 0.22), transparent 65%),
+    radial-gradient(500px 280px at 88% 10%, rgba(14, 165, 233, 0.18), transparent 65%),
+    radial-gradient(420px 260px at 50% 100%, rgba(236, 72, 153, 0.1), transparent 60%);
+}
+
+/* 锚点滚动不遮住吸顶头部 */
+section[id] {
+  scroll-margin-top: 88px;
+}
+
+/* details 里 summary 去掉默认箭头,统一自定义 */
+details > summary {
+  cursor: pointer;
+  list-style: none;
+}
+details > summary::-webkit-details-marker {
+  display: none;
 }
