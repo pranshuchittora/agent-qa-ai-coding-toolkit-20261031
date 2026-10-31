@@ -136,6 +136,17 @@ export const mcpServers: McpServer[] = [
     install: '官方应用下载；MCP 模式接入',
   },
   {
+    name: 'agent-qa',
+    vendor: 'vostride',
+    category: 'web',
+    oneLiner: '自然语言网页与移动端测试，结合 memidex 持久记忆、经验证的自我改进和可检查的运行证据。',
+    install: `# Node.js 24+；配置说明：https://vostride.com/docs/agent-qa/quickstart
+npm install -D agent-qa
+npx agent-qa init
+# 在含 agent-qa.config.yaml 的项目目录启动；客户端工具超时至少 100 分钟
+npx agent-qa mcp`,
+  },
+  {
     name: 'PostgreSQL MCP',
     vendor: '官方参考（已归档）',
     category: 'data',
